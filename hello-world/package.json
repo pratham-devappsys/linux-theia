@@ -1,0 +1,33 @@
+{
+  "name": "hello-world",
+  "keywords": [
+    "theia-extension"
+  ],
+  "version": "0.0.0",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "dependencies": {
+    "@theia/core": "1.69.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.4",
+    "rimraf": "^5.0.0",
+    "typescript": "~5.4.5",
+    "vite": "^7.3.1",
+    "vite-plugin-lib-inject-css": "^2.2.2"
+  },
+  "scripts": {
+    "prepare": "npm run clean && npm run build",
+    "clean": "rimraf lib",
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "theiaExtensions": [
+    {
+      "frontend": "lib/src/browser/hello-world-frontend-module"
+    }
+  ],
+  "packageManager": "npm@10.8.2"
+}

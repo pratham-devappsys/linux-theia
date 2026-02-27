@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "engines": {
+    "yarn": ">=1.7.0 <2",
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "start": "turbo start",
+    "watch": "turbo run watch",
+    "postinstall": "theia check:theia-version",
+    "clean": "turbo run clean && rimraf node_modules",
+    "download:plugins": "theia download:plugins --rate-limit=15 --parallel=false",
+        "build:prod": "npm run build && node scripts/product.js"
+  },
+  "dependencies": {
+  "hello-world": "file:hello-world"
+},
+  "devDependencies": {
+    "turbo": "^2.8.10"
+  },
+  "workspaces": [
+    "hello-world",
+    "browser-app"
+  ],
+  "packageManager": "npm@10.8.2",
+  "theiaPluginsDir": "plugins",
+      "theiaPlugins": {
+        "eclipse-theia.builtin-extension-pack": "https://open-vsx.org/api/eclipse-theia/builtin-extension-pack/1.104.0/file/eclipse-theia.builtin-extension-pack-1.104.0.vsix",
+        "vscode.c":"https://open-vsx.org/api/llvm-vs-code-extensions/vscode-clangd/0.4.0/file/llvm-vs-code-extensions.vscode-clangd-0.4.0.vsix",
+        "kylin-ide-team.kylin-java":"https://open-vsx.org/api/KylinIdeTeam/java/0.1.11/file/KylinIdeTeam.java-0.1.11.vsix",
+        "kylin-ide-team.kylin-python": "https://open-vsx.org/api/KylinIdeTeam/kylin-python/0.4.3/file/KylinIdeTeam.kylin-python-0.4.3.vsix",
+        "vscode.python-indent":"https://open-vsx.org/api/KevinRose/vsc-python-indent/1.21.0/file/KevinRose.vsc-python-indent-1.21.0.vsix",
+        "vscode.python-type-hint":"https://open-vsx.org/api/ms-python/pylint/2025.2.0/file/ms-python.pylint-2025.2.0.vsix"
+    }
+}
