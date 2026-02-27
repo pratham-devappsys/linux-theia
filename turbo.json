@@ -3,11 +3,13 @@
     "tasks": {
         "clean": {
             "outputs": [],
-            "dependsOn": ["^clean"]
+            "dependsOn": ["^clean"],
+            "cache": false
         },
         "build": {
             "dependsOn": ["^build"],
-            "outputs": ["lib/**"]
+            "outputs": ["lib/**"],
+            "cache":false
         },
         "start": {
             "dependsOn": ["^build"],

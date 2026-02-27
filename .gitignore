@@ -4,3 +4,8 @@ lib
 *.log
 *-app/*
 !*-app/package.json
+
+
+plugins/
+
+.turbo/
