@@ -2,57 +2,64 @@
   "private": true,
   "name": "browser-app",
   "version": "0.0.0",
+
   "dependencies": {
     "@theia/core": "1.69.0",
     "@theia/editor": "1.69.0",
     "@theia/filesystem": "1.69.0",
-    "@theia/markers": "1.69.0",
+        "@theia/markers": "1.69.0",
     "@theia/messages": "1.69.0",
     "@theia/monaco": "1.69.0",
     "@theia/navigator": "1.69.0",
     "@theia/preferences": "1.69.0",
-    "@theia/process": "1.69.0",
+        "@theia/process": "1.69.0",
     "@theia/terminal": "1.69.0",
     "@theia/workspace": "1.69.0",
-
-      "@theia/plugin": "^1.68.2",
-    "@theia/plugin-ext": "^1.68.2",
-    "@theia/plugin-ext-vscode": "^1.68.2",
-
-
+    "@theia/output": "1.69.0",
+    "@theia/plugin": "1.69.0",
+    "@theia/plugin-ext": "1.69.0",
+    "@theia/plugin-ext-vscode": "1.69.0",
     "hello-world": "0.0.0"
   },
+
   "devDependencies": {
     "@theia/cli": "1.69.0"
   },
-   "scripts": {
+
+  "scripts": {
     "build": "npm run rebuild && theia build --mode production",
     "rebuild": "theia rebuild:browser --cacheRoot ..",
-    "start": "theia start -p 5000 --plugins=local-dir:../plugins",
+    "start": "theia start -p 5800 --plugins=local-dir:../plugins",
     "watch": "npm run rebuild && theia build --watch --mode development",
     "clean": "theia clean && rimraf node_modules"
   },
+
   "theia": {
     "target": "browser",
     "frontend": {
       "config": {
         "applicationName": "Single File App",
-        
-        "layout": {
-          "initialLayout": {}
-        },
-        "preferences": {
-  "window.menuBarVisibility": "hidden",
-  "workbench.activityBar.visible": false,
-  "workbench.statusBar.visible": false,
-  "workbench.sideBar.visible": false,
-  "workbench.panel.hidden": true,
-  "editor.minimap.enabled": false
 
-        }
+        "preferences": {
+     
+        
+     "window.menuBarVisibility": "hidden",
+        "workbench.activityBar.visible": false,
+        "workbench.statusBar.visible": false,
+        "workbench.sideBar.visible": false,
+        "workbench.panel.defaultLocation": "bottom",
+        "workbench.panel.hidden": true,
+        "workbench.editor.showTabs": false,
+           "workbench.iconTheme": "material-icon-theme"
+      }
+    }},
+      "generator": {
+      "config": {
+        "preloadTemplate": "./resources/preload.html"
       }
     }
   },
+
   "packageManager": "npm@10.8.2",
   "theiaPluginsDir": "plugins"
 }

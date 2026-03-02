@@ -1,34 +1,33 @@
 import { injectable, inject } from 'inversify';
 import {
     FrontendApplicationContribution,
-    ApplicationShell,
-        FrontendApplication
+    ApplicationShell
 } from '@theia/core/lib/browser';
 
-import { OutlineViewWidget } from '@theia/outline-view/lib/browser/outline-view-widget';
-
-
 @injectable()
-export class HideLayoutContribution implements FrontendApplicationContribution {
+export class RemoveContainersContribution implements FrontendApplicationContribution {
 
     @inject(ApplicationShell)
     protected readonly shell!: ApplicationShell;
 
-    async onStart(app:FrontendApplication): Promise<void> {
-        await this.shell.collapsePanel('left');
-        await this.shell.collapsePanel('right');
-        await this.shell.collapsePanel('bottom');
+    async onStart(): Promise<void> {
 
-  const outline = app.shell.getWidgets('left')
-            .find(widget => widget instanceof OutlineViewWidget);
 
-            console.log("\n \n \n above removing the outline \n", outline);
+        console.log('Removing LEFT, RIGHT, BOTTOM containers from the UI');
+        
+        const left = this.shell.getWidgets('left');
+        left.forEach(widget => widget.dispose());
 
-        if (outline) {
-            app.shell.closeWidget(outline.id);
 
-            console.log("\n \n \n removing the outline \n", outline.id)
-        }
-       
+        const main = this.shell.getWidgets('main');
+        main.forEach(widget => widget.dispose());
+
+        // Remove RIGHT sidebar container
+        const right = this.shell.getWidgets('right');
+        right.forEach(widget => widget.dispose());
+
+        // Remove BOTTOM panel container
+        const bottom = this.shell.getWidgets('bottom');
+        bottom.forEach(widget => widget.dispose());
     }
 }

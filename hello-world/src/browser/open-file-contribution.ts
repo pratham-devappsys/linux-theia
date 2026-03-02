@@ -51,7 +51,7 @@ import {
     ApplicationShell
 } from '@theia/core/lib/browser';
 import { EditorManager } from '@theia/editor/lib/browser';
-import { URI } from '@theia/core/lib/common/uri';
+import URI from '@theia/core/lib/common/uri';
 
 @injectable()
 export class OpenSingleFileContribution implements FrontendApplicationContribution {
@@ -64,7 +64,14 @@ export class OpenSingleFileContribution implements FrontendApplicationContributi
 
     async onDidInitializeLayout(): Promise<void> {
 
-          localStorage.setItem('openfile', 'file:///home/devappsys/Documents/projects/linux-theia/dummy/main.py');  //for testing 
+
+
+        // this.shell.collapsePanel('left');
+        // this.shell.collapsePanel('right');
+        // this.shell.collapsePanel('bottom');
+
+
+        //   localStorage.setItem('openfile', 'file:///home/devappsys/Documents/projects/linux-theia/dummy/main.py');  //for testing 
 
         const storagePath = localStorage.getItem('openfile');
 
@@ -73,11 +80,6 @@ export class OpenSingleFileContribution implements FrontendApplicationContributi
             'file:///home/devappsys/Documents/projects/linux-theia/dummy/main.c';
 
         try {
-
-
-               if (this.shell.rightPanelHandler) {
-            this.shell.collapsePanel('right');
-        }
 
             for (const widget of this.editorManager.all) {
                 console.log("closing opened file ")

@@ -12,6 +12,7 @@
     "clean": "turbo run clean && rimraf node_modules",
     "download:plugins": "theia download:plugins --rate-limit=15 --parallel=false",
         "build:prod": "npm run build && node scripts/product.js"
+        
   },
   "dependencies": {
   "hello-world": "file:hello-world"
