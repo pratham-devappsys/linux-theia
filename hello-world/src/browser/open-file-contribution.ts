@@ -66,13 +66,6 @@ export class OpenSingleFileContribution implements FrontendApplicationContributi
 
 
 
-        // this.shell.collapsePanel('left');
-        // this.shell.collapsePanel('right');
-        // this.shell.collapsePanel('bottom');
-
-
-        //   localStorage.setItem('openfile', 'file:///home/devappsys/Documents/projects/linux-theia/dummy/main.py');  //for testing 
-
         const storagePath = localStorage.getItem('openfile');
 
         const filePath =

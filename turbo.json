@@ -9,12 +9,12 @@
         "build": {
             "dependsOn": ["^build"],
             "outputs": ["lib/**"],
-            "cache":false
+            "cache":true
         },
         "start": {
             "dependsOn": ["^build"],
             "outputs": [],
-            "cache": false
+            "cache": true
         },
         "watch": {
             "cache": false,
