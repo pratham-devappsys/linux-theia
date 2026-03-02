@@ -1,80 +1,37 @@
-# hello-world
-The example of how to build the Theia-based applications with the hello-world.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-## Getting started
+  <title>Single File App</title>
 
-Please install all necessary [prerequisites](https://github.com/eclipse-theia/theia/blob/master/doc/Developing.md#prerequisites).
+  <style>
+    /* Hide Activity Bar */
+    .lm-TabBar[data-orientation="vertical"] {
+      display: none !important;
+    }
 
-## Running the browser example
+    /* Hide sidebar icons */
+    .lm-Widget.theia-sidebar-menu i {
+      display: none !important;
+    }
 
-    yarn build:browser
-    yarn start:browser
+    /* Hide sidebar completely */
+    .theia-sidebar {
+      display: none !important;
+    }
 
-*or:*
+    /* Hide status bar */
+    .theia-statusBar {
+      display: none !important;
+    }
+  </style>
 
-    yarn build:browser
-    cd browser-app
-    yarn start
+</head>
 
-*or:* launch `Start Browser Backend` configuration from VS code.
-
-Open http://localhost:3000 in the browser.
-
-## Running the Electron example
-
-    yarn build:electron
-    yarn start:electron
-
-*or:*
-
-    yarn build:electron
-    cd electron-app
-    yarn start
-
-*or:* launch `Start Electron Backend` configuration from VS code.
-
-
-## Developing with the browser example
-
-Start watching all packages, including `browser-app`, of your application with
-
-    yarn watch:browser
-
-*or* watch only specific packages with
-
-    cd hello-world
-    yarn watch
-
-and the browser example.
-
-    cd browser-app
-    yarn watch
-
-Run the example as [described above](#Running-the-browser-example)
-## Developing with the Electron example
-
-Start watching all packages, including `electron-app`, of your application with
-
-    yarn watch:electron
-
-*or* watch only specific packages with
-
-    cd hello-world
-    yarn watch
-
-and the Electron example.
-
-    cd electron-app
-    yarn watch
-
-Run the example as [described above](#Running-the-Electron-example)
-
-## Publishing hello-world
-
-Create a npm user and login to the npm registry, [more on npm publishing](https://docs.npmjs.com/getting-started/publishing-npm-packages).
-
-    npm login
-
-Publish packages with lerna to update versions properly across local packages, [more on publishing with lerna](https://github.com/lerna/lerna#publish).
-
-    npx lerna publish
+<body>
+  <div class="theia-preload">./resources/preload.html</div>
+  <script src="./bundle.js"></script>
+</body>
+</html>
