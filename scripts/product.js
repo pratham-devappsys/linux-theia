@@ -92,6 +92,16 @@ execSync('npm install --omit=dev', {
     stdio: 'inherit'
 });
 
+
+const sourceHtml = path.resolve(__dirname, '../custom/index.html');
+const targetHtml = path.resolve(__dirname, '../production/lib/frontend/index.html');
+
+console.log('\nReplacing index.html with custom version...');
+
+fs.copyFileSync(sourceHtml, targetHtml);
+
+console.log('Custom index.html applied.');
+
 console.log('\n✅ Production build ready!');
 console.log('---------------------------------------');
 console.log('To run:');

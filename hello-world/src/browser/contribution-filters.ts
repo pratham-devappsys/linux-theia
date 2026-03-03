@@ -1,22 +1,14 @@
-// import { injectable } from 'inversify';
-// import { FileNavigatorContribution } from '@theia/navigator/lib/browser/navigator-contribution';
-// import { CommandRegistry } from '@theia/core/lib/common';
-// import { CommonCommands } from '@theia/core/lib/browser';
+import { FrontendApplicationContribution } from '@theia/core/lib/browser';
 
-// @injectable()
-// export class CustomExplorerContribution extends FileNavigatorContribution {
+export class OpenFileContribution implements FrontendApplicationContribution {
 
-//     override registerCommands(registry: CommandRegistry): void {
-//         super.registerCommands(registry);
+  onStart(): void {
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get('openfile');
 
-//         registry.unregisterCommand(CommonCommands.CLOSE_ALL_MAIN_TABS.id);
-
-//         registry.registerCommand(CommonCommands.CLOSE_ALL_MAIN_TABS, {
-//             execute: () => {
-//                 console.log("Intercepted Close All");
-
-//                 this.shell.closeMany([...this.shell.widgets]);
-//             }
-//         });
-//     }
-// }
+    if (file) {
+        console.log(`Opening file: ${file}`);
+      localStorage.setItem('openfile', file);
+    }
+  }
+}

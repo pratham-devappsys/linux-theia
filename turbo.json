@@ -14,7 +14,7 @@
         "start": {
             "dependsOn": ["^build"],
             "outputs": [],
-            "cache": true
+            "cache": false
         },
         "watch": {
             "cache": false,

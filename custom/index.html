@@ -28,7 +28,7 @@
     }
 
      .lm-TabBar[data-orientation="horizontal"] .theia-tabBar-tab-row {
-  display: none !important;   /* show again */
+  display: flex !important;   /* show again */
   flex-flow: row nowrap;
   width: 100%;
 }
@@ -36,8 +36,7 @@
 
 .lm-TabBar-toolbar {
   z-index: var(--theia-tabbar-toolbar-z-index);
-  /* Due to the scrollbar (`z-index: 1000;`) it has a greater `z-index`. */
-  display: flex;
+  display: none !important;   /* show again */
   flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
