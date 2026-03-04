@@ -2,7 +2,7 @@ import { ContainerModule } from '@theia/core/shared/inversify';
 import { FrontendApplicationContribution } from '@theia/core/lib/browser';
 import { RemoveContainersContribution } from './hide-layout-contribution';
 import { OpenSingleFileContribution } from './open-file-contribution';
-import { OpenFileContribution } from './contribution-filters';
+// import { OpenFileContribution } from './contribution-filters';
 // import { MessageClient, MessageService } from '@theia/core';
 
 
@@ -20,11 +20,11 @@ export default new ContainerModule((bind, unbind, isBound, rebind) => {
 //     }).inSingletonScope();
 
 
-    bind(OpenFileContribution).toSelf().inSingletonScope();
+    // bind(OpenFileContribution).toSelf().inSingletonScope();
 
 
-    bind(FrontendApplicationContribution)
-        .toService(OpenFileContribution);
+    // bind(FrontendApplicationContribution)
+    //     .toService(OpenFileContribution);
     
 
 

@@ -1,14 +1,14 @@
-import { FrontendApplicationContribution } from '@theia/core/lib/browser';
+// import { FrontendApplicationContribution } from '@theia/core/lib/browser';
 
-export class OpenFileContribution implements FrontendApplicationContribution {
+// export class OpenFileContribution implements FrontendApplicationContribution {
 
-  onStart(): void {
-    const params = new URLSearchParams(window.location.search);
-    const file = params.get('openfile');
+//   onStart(): void {
+//     const params = new URLSearchParams(window.location.search);
+//     const file = params.get('openfile');
 
-    if (file) {
-        console.log(`Opening file: ${file}`);
-      localStorage.setItem('openfile', file);
-    }
-  }
-}
+//     if (file) {
+//         console.log(`Opening file: ${file}`);
+//       localStorage.setItem('openfile', file);
+//     }
+//   }
+// }
