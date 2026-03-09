@@ -1,0 +1,94 @@
+name: UAT Build & Upload
+
+on:
+  push:
+    branches:
+      - uat
+
+jobs:
+  # build-and-upload-windows:
+  #   runs-on: windows-latest
+
+  #   steps:
+  #     - uses: actions/checkout@v4
+
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 22
+  #         cache: npm
+
+  #     - run: npm install
+  #     - run: npm run build
+
+  #     - name: Zip build
+  #       run: Compress-Archive -Path production -DestinationPath theia-windows-production.zip
+
+  #     - name: 📦 Install MinIO client (mc)
+  #       shell: pwsh
+  #       run: |
+  #         Invoke-WebRequest -Uri https://dl.min.io/client/mc/release/windows-amd64/mc.exe -OutFile mc.exe
+  #         Move-Item mc.exe C:\Windows\System32\mc.exe
+  #         mc --version
+
+  #     - name: 🚀 Upload Windows build
+  #       shell: pwsh
+  #       env:
+  #         VULTR_ALIAS: vultr
+  #         VULTR_ENDPOINT: ${{ secrets.VULTR_ENDPOINT }}
+  #         VULTR_ACCESS_KEY: ${{ secrets.VULTR_ACCESS_KEY }}
+  #         VULTR_SECRET_KEY: ${{ secrets.VULTR_SECRET_KEY }}
+  #         VULTR_BUCKET: ${{ secrets.BUCKET_NAME }}
+  #       run: |
+  #         mc alias set $env:VULTR_ALIAS $env:VULTR_ENDPOINT $env:VULTR_ACCESS_KEY $env:VULTR_SECRET_KEY
+
+  #         mc cp theia-windows-production..zip `
+  #           "$env:VULTR_ALIAS/$env:VULTR_BUCKET/Theia-Editor/windows/theia-windows-production.zip"
+
+
+  build-and-upload-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      # build .deb and .rpm
+      - name: Install Linux packaging tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg rpm
+
+      - name: Build Linux installers
+        run: npm run build:prod
+
+      - name: 📦 Install MinIO client (mc)
+        run: |
+          curl -L https://dl.min.io/client/mc/release/linux-amd64/mc -o mc
+          chmod +x mc
+          sudo mv mc /usr/local/bin/mc
+
+      - name: 🚀 Upload .deb and .rpm
+        shell: bash
+        env:
+          VULTR_ALIAS: vultr
+          VULTR_ENDPOINT: ${{ secrets.VULTR_ENDPOINT }}
+          VULTR_ACCESS_KEY: ${{ secrets.VULTR_ACCESS_KEY }}
+          VULTR_SECRET_KEY: ${{ secrets.VULTR_SECRET_KEY }}
+          VULTR_BUCKET: ${{ secrets.BUCKET_NAME }}
+        run: |
+          mc alias set $VULTR_ALIAS $VULTR_ENDPOINT $VULTR_ACCESS_KEY $VULTR_SECRET_KEY
+
+          # Upload .deb (Ubuntu/Debian)
+          mc cp out/make/deb/x64/*.deb \
+            "$VULTR_ALIAS/$VULTR_BUCKET/Applications/linux/"
+
+          # Upload .rpm (Fedora/CentOS)
+          mc cp out/make/rpm/x64/*.rpm \
+            "$VULTR_ALIAS/$VULTR_BUCKET/Applications/linux/"
