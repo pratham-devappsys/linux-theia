@@ -19,7 +19,7 @@
   "scripts": {
     "build": "npm run rebuild && theia build --mode production",
     "rebuild": "theia rebuild:browser --cacheRoot ..",
-    "start": "theia start -p 5500 --plugins=local-dir:../plugins",
+    "start": "theia start -p 5600 --plugins=local-dir:../plugins",
     "watch": "npm run rebuild && theia build --watch --mode development",
     "clean": "theia clean && rimraf node_modules"
   },
